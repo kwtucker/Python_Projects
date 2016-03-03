@@ -2,9 +2,21 @@
 {% block head_title %}{{ block.super }}{% endblock head_title %}
 {% block content %}
     <h1>{{ name }} template worked</h1>
+    <section>
+    <ul id="feed">
     {% for obj in object_list %}
+    <li>
     <a href="{{ obj.get_absolute_url }}"><p><strong>{{ obj.name }}</strong></p></a>
     <p>Meetup Id: {{ obj.meetup_id }}</p>
     <p>Meetup Link: {{ obj.meetup_link }}</p>
+    <p id='add'><strong>ADD</strong></p>
+    </li>
     {% endfor %}
+    </ul>
+    </section>
+    <section>
+    <ul id="mylist">
+        <li>hey</li>
+    </ul>
+    </section>
 {% endblock content %}

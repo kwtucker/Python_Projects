@@ -1,14 +1,19 @@
-// $(function(){
-//     $( "p" ).css( "color", "red" );
+
+// $(function() {
+//     $('p#add').click(function(e) {
+//             e.preventDefault();
+//             $(this)
+//                 .empty()
+//                 .append('<p id="remove"><strong>Remove</strong></p>')
+//                 .parent()
+//                 .appendTo('#mylist ul');
+
+//         });
+//     $('p#remove').click(function(e) {
+//                 e.preventDefault();
+//                 $(this).parent().click(function() {
+//                     $(this).empty().append("<p id='add'><strong>ADD</strong></p>").parent().appendTo("#feed ul");
+//                 });
+//                 // $('#done').hide();
+//             });
 // });
-
-// $(document).ready(function() {
-
-//         $("a").css(  "border", "9px solid red" );
-
-// });
-
-// Shorthand for $( document ).ready()
-$(function() {
-    console.log( "ready!" );
-});

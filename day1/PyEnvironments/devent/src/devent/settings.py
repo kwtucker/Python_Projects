@@ -112,9 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -125,6 +122,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+THIRD_PARTY_APPS = [
+    "meetup",
+]
+
+MEETUP_KEY = "7c262c2a36663e58f211b166330a6"
+
+# **Security Warning:** Keep personal Meetup api key secret.
+# Read `Meetup documentation <https://secure.meetup.com/meetup_api/key/>`_.
+
+MEETUP_GROUP_ID = 123456789
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/

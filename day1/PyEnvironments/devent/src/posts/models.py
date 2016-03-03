@@ -6,6 +6,7 @@ class Post(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True)
     #title = models.CharField(max_length=120, null=True, blank=True)
     #content = models.TextField()
+
     meetup_id = models.IntegerField(default=0)
     meetup_link = models.CharField(max_length=120, null=True, blank=True)
     # timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)

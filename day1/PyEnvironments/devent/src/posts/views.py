@@ -56,6 +56,14 @@ def post_delete(request, id):
     messages.success(request, "Deleted")
     return redirect("posts:list")
 
+import services
+# class EventPage():
+def get(request):
+    events_list = services.get_events()
+    context_data = {
+        "instance": events_list,
+    }
+    return render(request,'events.html',context_data)
 
 
 
