@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block head_title %}{{ block.super }}{% endblock head_title %}
+{% block content %}
+    <h1>{{ name }} template worked</h1>
+    {% for obj in object_list %}
+    <a href="{{ obj.get_absolute_url }}"><p><strong>{{ obj.name }}</strong></p></a>
+    <p>Meetup Id: {{ obj.meetup_id }}</p>
+    <p>Meetup Link: {{ obj.meetup_link }}</p>
+    {% endfor %}
+{% endblock content %}
