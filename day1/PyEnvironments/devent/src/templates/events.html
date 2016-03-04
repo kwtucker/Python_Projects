@@ -1,8 +1,26 @@
 {% extends "base.html" %}
-{% block head_title %}{{ block.super }}{% endblock head_title %}
+{% block head_title %}Event Feed | {{ block.super }}{% endblock head_title %}
 {% block content %}
-    <h1>events</h1>
-    {% for obj in instance %}
-        <p>Meetup Id: {{ obj }}</p>
+    <ul id='meetupfeed'>
+    <h2>Event Feed</h1>
+    {% for i in instance.results %}
+        {% if i.event_url %}
+        <li>
+            <p>{{ i.group_name }}</p>
+            <p>{{ i.event_name }}</p>
+            <p><small>{{ i.event_date }}</small></p>
+            <form action="/posts/create/" method="POST">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="event_id" value="{{ i.event_id }}">
+                <input type="hidden" name="group_name" value="{{ i.group_name }}">
+                <input type="hidden" name="event_name" value="{{ i.event_name }}">
+                <input type="hidden" name="event_date" value="{{ i.event_date }}">
+                <input type="hidden" name="event_url" value="{{ i.event_url }}">
+                <input type="submit" value="Add to list"></input>
+            </form>
+            <a href="{{ i.event_url }}" title="Meetup Link" target="_blank">Click to View</a>
+        </li>
+        {% endif %}
     {% endfor %}
+    </ul>
 {% endblock %}
