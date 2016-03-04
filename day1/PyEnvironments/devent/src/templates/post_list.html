@@ -1,22 +1,32 @@
 {% extends "base.html" %}
 {% block head_title %}{{ block.super }}{% endblock head_title %}
 {% block content %}
-    <h1>{{ name }} template worked</h1>
+    <h1>Your Meetup List</h1>
     <section>
     <ul id="feed">
     {% for obj in object_list %}
     <li>
-    <a href="{{ obj.get_absolute_url }}"><p><strong>{{ obj.name }}</strong></p></a>
-    <p>Meetup Id: {{ obj.meetup_id }}</p>
-    <p>Meetup Link: {{ obj.meetup_link }}</p>
-    <p id='add'><strong>ADD</strong></p>
+    <p><strong>{{ obj.group_name }}</strong></p>
+    <p>Event Name: {{ obj.event_name }}</p>
+    <p>Event Date: {{ obj.event_date }}</p>
+    <p>Event Link: {{ obj.event_url }}</p>
+    {% if obj.comment %}
+    <p>Event Comment: {{ obj.comment }}<a href="{{ obj.get_absolute_url }}" name="">Edit Comment</a></p>
+    {% else %}
+        <a href="{{ obj.get_absolute_url }}" name="">Add Comment</a></p>
+    {% endif %}
+    <form action="/posts/{{ obj.id }}/delete/" method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="event_id" value="{{ i.event_id }}">
+        <input type="hidden" name="group_name" value="{{ i.group_name }}">
+        <input type="hidden" name="event_name" value="{{ i.event_name }}">
+        <input type="hidden" name="event_date" value="{{ i.event_date }}">
+        <input type="hidden" name="event_url" value="{{ i.event_url }}">
+        <input type="submit" value="Remove"></input>
+    </form>
+
     </li>
     {% endfor %}
+
     </ul>
-    </section>
-    <section>
-    <ul id="mylist">
-        <li>hey</li>
-    </ul>
-    </section>
 {% endblock content %}

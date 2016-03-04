@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block head_title %}{{ instance.name }} | {{ block.super }}{% endblock head_title %}
+{% block head_title %}| {{ block.super }}{% endblock head_title %}
 {% block content %}
     <h1>Form</h1>
     <form action="" method="POST">{% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit Post"></input>
+        <input type="submit" value="Submit Comment"></input>
     </form>
 {% endblock %}

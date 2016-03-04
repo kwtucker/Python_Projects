@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block head_title %}{{ instance.name }} | {{ block.super }}{% endblock head_title %}
+{% block head_title %}Details | {{ block.super }}{% endblock head_title %}
 {% block content %}
     <h1>{{ name }}</h1>
-    <p>{{ instance.content }}</p>
-    <p>Meetup Id: {{ instance.meetup_id }}</p>
-    <p>Meetup Link: {{ instance.meetup_link }}</p>
+    <p>Event Name: {{ instance.event_name }}</p>
+    <p>Event Date: {{ instance.event_date }}</p>
+    <p>Event Link: {{ instance.event_url }}</p>
     <a href="/posts/" name="">Go To Posts</a>
     <a href="/posts/{{ instance.id }}/edit" name="">Edit</a>
 {% endblock content %}
