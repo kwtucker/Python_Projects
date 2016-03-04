@@ -5,3 +5,25 @@ body {
 #feed {
     background: #777;
 }
+
+#meetupfeed li {
+    content: '';
+    display: table;
+    clear: both;
+    border: 2px solid #000;
+    margin: 20px 0;
+    padding: 7px;
+    width: 100%;
+}
+
+#meetupfeed li a {
+    float: right;
+    text-align: left;
+    margin: 0 10px;
+}
+
+#meetupfeed li p {
+    text-align: left;
+    display: inline-block;
+    margin: 0 10px;
+}
