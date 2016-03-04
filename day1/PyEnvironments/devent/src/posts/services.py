@@ -1,15 +1,14 @@
 import requests
-import json
+# import json
+import simplejson as json
 def get_events():
-    url = 'https://api.meetup.com/self/events'
-    params = {'photo-host': 'public', 'page': 1, 'sig_id': 184859886, 'sig': '8dcbb49f2f63c3df00a553fd3e479ec3a0f5f89d'}
-    r = requests.get('https://api.meetup.com/self/events', params=params)
+    url = 'https://api.meetup.com/activity'
+    params = {'member_id': 184859886,
+                'format': 'json',
+                'photo-host': 'public',
+                'sig_id': 184859886,
+                'sig': '8a5c4ded3d246545acb6095533e37c44bc6dabe3'}
+    r = requests.get(url, params=params)
     events = r.json()
-    events_list = {'events':events[0]}
-    j = json.loads(events_list)
-    print j
+    return events
 
-    print events_list
-    return events_list
-    #print events_list
-    # https://api.meetup.com/self/events?photo-host=public&page=1&sig_id=184859886&sig=8dcbb49f2f63c3df00a553fd3e479ec3a0f5f89d
