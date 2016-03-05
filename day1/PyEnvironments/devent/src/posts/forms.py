@@ -1,9 +1,9 @@
 from django import forms
-from .models import Post
+from .models import Event
 
-class PostForm(forms.ModelForm):
+class EventForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = Event
         fields = [
             "group_name",
             "event_name",
@@ -15,7 +15,7 @@ class PostForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = Event
 
         fields = [
             "comment",

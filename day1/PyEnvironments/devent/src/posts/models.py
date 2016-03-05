@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 # Create your models here.
-class Post(models.Model):
+class Event(models.Model):
     group_name = models.CharField(max_length=120, null=True, blank=True)
     event_name = models.CharField(max_length=120, null=True, blank=True)
     event_date = models.CharField(max_length=120, null=True, blank=True)

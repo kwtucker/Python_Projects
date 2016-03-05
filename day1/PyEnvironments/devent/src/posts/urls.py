@@ -1,20 +1,20 @@
 from django.conf.urls import url
 from django.contrib import admin
 from .views import (
-                    post_list,
-                    post_create,
+                    event_list,
+                    event_create,
                     # post_detail,
-                    post_update,
-                    post_delete,
+                    event_comment_update,
+                    event_delete,
                     get,
-                    post_comment,
+                    event_comment,
                     )
 urlpatterns = [
-    url(r'^$', post_list, name='list'),
-    url(r'^create/$', post_create),
+    url(r'^$', event_list, name='list'),
+    url(r'^create/$', event_create),
     # url(r'^(?P<id>\d+)/$', post_detail, name='detail'),
-    url(r'^(?P<id>\d+)/edit/$', post_update, name='update'),
-    url(r'^(?P<id>\d+)/delete/$', post_delete),
+    url(r'^(?P<id>\d+)/edit/$', event_comment_update, name='update'),
+    url(r'^(?P<id>\d+)/delete/$', event_delete),
     url(r'^get/$', get, name='get'),
-    url(r'^edit/(?P<id>\d+)/$', post_comment, name='comment'),
+    url(r'^edit/(?P<id>\d+)/$', event_comment, name='comment'),
 ]
