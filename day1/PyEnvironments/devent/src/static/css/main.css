@@ -1,5 +1,5 @@
 body {
-    background: #E5E5E5;
+    background: #262626;
     font: 400 16px/1.45 'Noto Sans', sans-serif;
     color: #262626;
 }
@@ -13,8 +13,11 @@ ul {
     font-size: 1.1em;
     padding: 2px 15px 3px 15px;
     text-align: center;
-    height: 32px;
+   /* height: 32px;*/
     text-decoration: none;
+}
+.noContent {
+    color: red;
 }
 
 .link:hover, .btn-info:hover{
@@ -50,13 +53,46 @@ input[type='submit']:active, .btn-info:active{
 
 
 h2 {
-    margin: 80px 0 0;
+    margin: 60px 0 0 0;
+    color: #EDEDED;
+    font: 700 30px/1.45 'Noto Sans', sans-serif;
 }
 
-.messages .success {
+.messages {
+    padding: 0;
+    list-style-type: none;
+}
+
+.success {
+    background: #297451;
+    padding: 20px;
     margin: 80px 0 0 0;
+    color: #EDEDED;
+    font: 700 16px/2.4 'Noto Sans', sans-serif;
+}
+
+.info {
+    background: #8E332C;
+    padding: 20px;
+    margin: 80px 0 0 0;
+    color: #EDEDED;
+    font: 700 16px/2.4 'Noto Sans', sans-serif;
 }
 
 textarea {
     height: 8em;
+}
+
+.datetime {
+    background: #7AAEDB;
+    height: 40px;
+    text-align: right;
+    line-height: 2.4;
+    font: 700 16px/2.4 'Noto Sans', sans-serif;
+}
+
+footer {
+    background: #262626;
+    color: #EDEDED;
+    padding: 15px;
 }

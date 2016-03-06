@@ -9,13 +9,18 @@
     {% load humanize %}
         <li class="item row">
             <div class="row">
+                <p class="hidden-xs col-md-3 col-md-offset-10 datetime"><small>{{ i.time }}</small></p>
+                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-xs-12 col-xs-offset-0 datetime"><small>{{ obj.event_date }}</small></p>
+            </div>
+            <div class="row">
                 <p class="hidden-xs col-sm-3"><strong>Event</strong></p>
                 <p class="hidden-xs col-sm-4"><strong>Group</strong></p>
             </div>
             <div class="row">
-                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-3 datetime"><strong>Event</strong> {{ i.name }}<small>{{ i.time }}</small></p>
+                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-3"><strong>Event</strong> {{ i.name }}</p>
+
                 <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-4"><strong>Group</strong> {{ i.group.name }}</p>
-                <p  class="hidden-xs col-sm-3 col-md-3 datetime">{{ i.name }} <small>{{ i.time }}</small></p>
+                <p  class="hidden-xs col-sm-3 col-md-3">{{ i.name }}</p>
                 <p class="hidden-xs col-sm-4 col-md-3">{{ i.group.name }}</p>
 
                 <div class="col-sm-4 col-md-6">

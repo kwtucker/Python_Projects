@@ -42,7 +42,7 @@ def event_comment_update(request, id):
 def event_delete(request,id):
     instance = get_object_or_404(Event,id=id)
     instance.delete()
-    messages.success(request, "Deleted")
+    messages.info(request, "Deleted")
     return redirect("posts:list")
 
 

@@ -4,16 +4,24 @@
     <h2>Your Meetup List</h2>
     <section class="row">
     <ul class="col-sm-12">
+        {% if not object_list %}
+            <li class="noContent info">You have no events in your list. Please add one from the Event Feed page.</li>
+        {% endif %}
     {% for obj in object_list %}
+
         <li class="item row">
+            <div class="row">
+                <p class="hidden-xs col-md-3 col-md-offset-10 datetime"><small>{{ obj.event_date }}</small></p>
+                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-xs-12 col-xs-offset-0 datetime"><small>{{ obj.event_date }}</small></p>
+            </div>
             <div class="row">
                 <p class="hidden-xs col-sm-3"><strong>Event</strong></p>
                 <p class="hidden-xs col-sm-4"><strong>Group</strong></p>
             </div>
             <div class="row">
-                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-3 datetime"><strong>Event</strong> {{ obj.event_name }} <small>{{ obj.event_date }}</small></p>
+                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-3"><strong>Event</strong> {{ obj.event_name }}</p>
                 <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-4"><strong>Group</strong> {{ obj.group_name }}</p>
-                <p class="hidden-xs col-sm-3 col-md-3 datetime">{{ obj.event_name }}<small>{{ obj.event_date }}</small></p>
+                <p class="hidden-xs col-sm-3 col-md-3">{{ obj.event_name }}</p>
                 <p class="hidden-xs col-sm-4 col-md-3">{{ obj.group_name }}</p>
 
                 <div class="col-sm-4 col-md-6">
@@ -61,27 +69,3 @@
 
     </ul>
 {% endblock content %}
-
-
-
-
-<!-- <li class="item">
-    <p><strong>{{ obj.group_name }}</strong></p>
-    <p>Event Name: {{ obj.event_name }}</p>
-    <p>Event Link: {{ obj.event_url }}</p>
-    {% if obj.comment %}
-    <p>Event Comment: {{ obj.comment }}<a href="{{ obj.get_absolute_url }}" name="">Edit Comment</a></p>
-    {% else %}
-        <a class="link" href="{{ obj.get_absolute_url }}" name="">Add Comment</a></p>
-    {% endif %}
-    <form action="/posts/{{ obj.id }}/delete/" method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="event_id" value="{{ i.event_id }}">
-        <input type="hidden" name="group_name" value="{{ i.group_name }}">
-        <input type="hidden" name="event_name" value="{{ i.event_name }}">
-        <input type="hidden" name="event_date" value="{{ i.event_date }}">
-        <input type="hidden" name="event_url" value="{{ i.event_url }}">
-        <input type="submit" value="Remove"></input>
-    </form>
-
-    </li> -->
