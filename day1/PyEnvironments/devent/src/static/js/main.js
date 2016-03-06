@@ -1,19 +1,21 @@
 
-// $(function() {
-//     $('p#add').click(function(e) {
-//             e.preventDefault();
-//             $(this)
-//                 .empty()
-//                 .append('<p id="remove"><strong>Remove</strong></p>')
-//                 .parent()
-//                 .appendTo('#mylist ul');
+$(function() {
+    $('.btn').addClass('comShow')
+    $('.comShow').click(function(e) {
+        e.preventDefault();
+        $(this).toggleClass('comShow comHide');
+        if($(this).hasClass('comHide')) {
 
-//         });
-//     $('p#remove').click(function(e) {
-//                 e.preventDefault();
-//                 $(this).parent().click(function() {
-//                     $(this).empty().append("<p id='add'><strong>ADD</strong></p>").parent().appendTo("#feed ul");
-//                 });
-//                 // $('#done').hide();
-//             });
-// });
+            $(this).text('Hide Comment');
+        } else {
+            $(this).text('Show Comment');
+        }
+    });
+
+    $('.datetime small').each(function(index, el) {
+        JSON.stringify(el)
+        var date = Number(el.innerHTML)
+        var myDate = new Date(date);
+        $(this).text(myDate.toLocaleString())
+    });
+});

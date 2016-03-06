@@ -1,29 +1,62 @@
 body {
-    background: #fff;
+    background: #E5E5E5;
+    font: 400 16px/1.45 'Noto Sans', sans-serif;
+    color: #262626;
 }
 
-#feed {
-    background: #777;
+ul {
+    list-style: none;
 }
 
-#meetupfeed li {
-    content: '';
-    display: table;
-    clear: both;
-    border: 2px solid #000;
-    margin: 20px 0;
+.link {
+    color: #676767;
+    font-size: 1.1em;
+    padding: 2px 15px 3px 15px;
+    text-align: center;
+    height: 32px;
+    text-decoration: none;
+}
+
+.link:hover, .btn-info:hover{
+    text-decoration: none;
+    color: #262626;
+}
+
+.item {
+    background: #FFFFFF;
+    margin: 15px 0;
     padding: 7px;
-    width: 100%;
+    border-radius: 4px;
 }
 
-#meetupfeed li a {
-    float: right;
-    text-align: left;
-    margin: 0 10px;
+input[type='submit'], .btn-info {
+    background: #fff;
+    color: #676767;
+    border: 2px solid #676767;
+    border-radius: 4px;
+    outline: none;
 }
 
-#meetupfeed li p {
-    text-align: left;
-    display: inline-block;
-    margin: 0 10px;
+input[type='submit']:hover,  .btn-info:hover {
+    background: #262626;
+    color: #EDEDED;
+    border: 2px solid #262626;
+}
+
+input[type='submit']:active, .btn-info:active{
+    border: 2px solid #fff;
+    outline: none;
+}
+
+
+h2 {
+    margin: 80px 0 0;
+}
+
+.messages .success {
+    margin: 80px 0 0 0;
+}
+
+textarea {
+    height: 8em;
 }

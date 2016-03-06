@@ -7,3 +7,4 @@ class PostModelAdmin(admin.ModelAdmin):
     class Meta:
         model = Event
 admin.site.register(Event, PostModelAdmin)
+

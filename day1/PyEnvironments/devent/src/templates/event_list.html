@@ -1,19 +1,78 @@
 {% extends "base.html" %}
-{% block head_title %}{{ block.super }}{% endblock head_title %}
+{% block head_title %}Meetup List | {{ block.super }}{% endblock head_title %}
 {% block content %}
-    <h1>Your Meetup List</h1>
-    <section>
-    <ul id="feed">
+    <h2>Your Meetup List</h2>
+    <section class="row">
+    <ul class="col-sm-12">
     {% for obj in object_list %}
-    <li>
+        <li class="item row">
+            <div class="row">
+                <p class="hidden-xs col-sm-3"><strong>Event</strong></p>
+                <p class="hidden-xs col-sm-4"><strong>Group</strong></p>
+            </div>
+            <div class="row">
+                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-3 datetime"><strong>Event</strong> {{ obj.event_name }} <small>{{ obj.event_date }}</small></p>
+                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-md-4"><strong>Group</strong> {{ obj.group_name }}</p>
+                <p class="hidden-xs col-sm-3 col-md-3 datetime">{{ obj.event_name }}<small>{{ obj.event_date }}</small></p>
+                <p class="hidden-xs col-sm-4 col-md-3">{{ obj.group_name }}</p>
+
+                <div class="col-sm-4 col-md-6">
+                    <form class="col-xs-offset-1 col-xs-10 col-sm-12 col-md-5" action="/posts/{{ obj.id }}/delete/" method="POST">{% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="hidden" name="event_id" value="{{ obj.event_id }}">
+                        <input type="hidden" name="group_name" value="{{ obj.group_name }}">
+                        <input type="hidden" name="event_name" value="{{ obj.event_name }}">
+                        <input type="hidden" name="event_name" value="{{ obj.event_date }}">
+                        <input type="hidden" name="event_url" value="{{ obj.event_url }}">
+                        <input class="col-xs-12"  type="submit" value="Remove"></input>
+                    </form>
+                    <a class="link col-xs-offset-1 col-xs-10 col-sm-12 col-md-5" href="{{ obj.event_url }}" title="Meetup Link" target="_blank">Click to View</a>
+                </div>
+            </div>
+
+            {% if obj.comment %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-info col-xs-12 col-sm-4" data-toggle="collapse" data-target=".comment{{ forloop.counter }}">Show Comment</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="comment{{ forloop.counter }} collapse col-sm-12">
+                <div class="row">
+                    <p class="commenttext col-sm-12">{{ obj.comment }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-12"><a class="link" href="{{ obj.get_absolute_url }}" name="">Edit Comment</a></p>
+                </div>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="row">
+                <div class="col-sm-3">
+                    <a class="link col-sm-12" href="{{ obj.get_absolute_url }}" name="">Add Comment</a></p>
+                </div>
+            </div>
+            {% endif %}
+
+        </li>
+
+    {% endfor %}
+
+    </ul>
+{% endblock content %}
+
+
+
+
+<!-- <li class="item">
     <p><strong>{{ obj.group_name }}</strong></p>
     <p>Event Name: {{ obj.event_name }}</p>
-    <p>Event Date: {{ obj.event_date }}</p>
     <p>Event Link: {{ obj.event_url }}</p>
     {% if obj.comment %}
     <p>Event Comment: {{ obj.comment }}<a href="{{ obj.get_absolute_url }}" name="">Edit Comment</a></p>
     {% else %}
-        <a href="{{ obj.get_absolute_url }}" name="">Add Comment</a></p>
+        <a class="link" href="{{ obj.get_absolute_url }}" name="">Add Comment</a></p>
     {% endif %}
     <form action="/posts/{{ obj.id }}/delete/" method="POST">{% csrf_token %}
         {{ form.as_p }}
@@ -25,8 +84,4 @@
         <input type="submit" value="Remove"></input>
     </form>
 
-    </li>
-    {% endfor %}
-
-    </ul>
-{% endblock content %}
+    </li> -->

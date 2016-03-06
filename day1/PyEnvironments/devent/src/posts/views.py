@@ -10,21 +10,12 @@ def event_create(request):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        messages.success(request, "Success Added")
-        # return HttpResponseRedirect(instance.get_absolute_url())
+        messages.success(request, "Successfully added to your list!")
         return redirect("posts:get")
     context_data = {
         'form': form,
     }
-    return render(request, "post_form.html", context_data)
-
-# def post_detail(request, id):
-#     instance = get_object_or_404(Post,id=id)
-#     context_data = {
-#         "name": instance.group_name,
-#         "instance": instance,
-#     }
-#     return render(request, "post_detail.html", context_data)
+    return render(request, "event_form.html", context_data)
 
 def event_list(request):
     queryset = Event.objects.all()
@@ -40,14 +31,13 @@ def event_comment_update(request, id):
         instance = form.save(commit=False)
         instance.save()
         messages.success(request, "Saved")
-        # return HttpResponseRedirect(instance.get_absolute_url())
         return redirect("posts:list")
     context_data = {
         "name": instance.group_name,
         "instance": instance,
         "form":form,
     }
-    return render(request, "post_form.html", context_data)
+    return render(request, "event_form.html", context_data)
 
 def event_delete(request,id):
     instance = get_object_or_404(Event,id=id)
@@ -73,7 +63,6 @@ def event_comment(request, id):
             "instance": instance,
             "form":form,
     }
-
     return render(request, "event_list.html", context_data)
 
 

@@ -6,11 +6,9 @@ class Event(models.Model):
     group_name = models.CharField(max_length=120, null=True, blank=True)
     event_name = models.CharField(max_length=120, null=True, blank=True)
     event_date = models.CharField(max_length=120, null=True, blank=True)
-    event_id = models.CharField(max_length=255, null=True, blank=True)
-    event_url = models.CharField(max_length=120, null=True, blank=True)
-    comment = models.TextField(null=True, blank=True)
-    # timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    # updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    event_id   = models.CharField(max_length=255, null=True, blank=True)
+    event_url  = models.CharField(max_length=120, null=True, blank=True)
+    comment    = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.title
