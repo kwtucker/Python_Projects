@@ -8,8 +8,13 @@ You will be able to see the Event Feed(Containing the meetup api data) and Your 
 
 ##### Getting Started
 
-Install virtualenv
 Install pip
+
+**Then install virtualenv:**
+
+```
+$ pip install virtualenv
+```
 
 **cd Django_Meetup_app/PyEnvironments**
 
