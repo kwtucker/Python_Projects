@@ -9,8 +9,18 @@ $(function() {
         if($(this).hasClass('comHide')) {
 
             $(this).text('Hide Comment');
+            $(this).css({'background': '#262626',
+                        'color': '#EDEDED',
+                        'border': '2px solid #262626',
+                        'outline': 'none'
+                    })
         } else {
             $(this).text('Show Comment');
+            $(this).css({'background': '#fff',
+                        'color': '#676767',
+                        'border': '2px solid #676767',
+                        'outline': 'none'
+                    })
         }
     });
 
