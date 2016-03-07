@@ -11,25 +11,27 @@ You will be able to see the Event Feed(Containing the meetup api data) and Your 
 Install virtualenv
 Install pip
 
-cd Django_Meetup_app/PyEnvironments
+**cd Django_Meetup_app/PyEnvironments**
+
 Install virtual dependencies with:
 ```
 $ pip install -r requirements.txt
 ```
-
-cd Django_Meetup_app/PyEnvironments/devent
+___
+**cd Django_Meetup_app/PyEnvironments/devent**
 ```
 $ source bin/activate
 ```
-
-###### To see if you are in the virtual environment run this command:
+___
+**To see if you are in the virtual environment run this command:**
 ```
 $ which python
 ```
-This response path should end with this:
-PyEnvironments/devent/bin/python
+**This response path should end with this:**
 
-###### To Exit the Virtual Environment run in the project directory:
+PyEnvironments/devent/bin/python
+___
+**To Exit the Virtual Environment run in the project directory:**
 ```
 $ deactivate
 ```
