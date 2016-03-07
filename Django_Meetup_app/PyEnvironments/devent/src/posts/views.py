@@ -1,5 +1,4 @@
 from django.contrib import messages
-# from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import EventForm, CommentForm
 from .models import Event
@@ -7,8 +6,8 @@ import services
 
 
 ### Create ###
-# When the request from the Add to List button on the templates/events.html is pressed
-# the API event will be add to the database and displayed to the templates/event_list.html
+    # When the request from the Add to List button on the templates/events.html is pressed
+    # the API event will be add to the database and displayed to the templates/event_list.html
 def event_create(request):
     # send the request object to the EventForm to grab the object data.
     form = EventForm(request.POST or None)
@@ -35,10 +34,10 @@ def event_list(request):
 
 
 ### Update ###
-# The id of the object is passed through the url route.
-# When the Add Comment button is pressed the object will be set to instance.
-# Then it will display the form with only the comment textarea.
-# On Submit it will save it to that instance object and pass it to the view
+    # The id of the object is passed through the url route.
+    # When the Add Comment button is pressed the object will be set to instance.
+    # Then it will display the form with only the comment textarea.
+    # On Submit it will save it to that instance object and pass it to the view
 def event_comment_update(request, id):
     instance = get_object_or_404(Event,id=id)
     form = CommentForm(request.POST or None, instance=instance)
@@ -56,9 +55,9 @@ def event_comment_update(request, id):
 
 
 ### Delete ###
-# The id of the object is passed through the url route.
-# The object is selected and deleted from the database.
-# Redirect back to the same page list.
+    # The id of the object is passed through the url route.
+    # The object is selected and deleted from the database.
+    # Redirect back to the same page list.
 def event_delete(request,id):
     instance = get_object_or_404(Event,id=id)
     instance.delete()
@@ -66,9 +65,9 @@ def event_delete(request,id):
     return redirect("posts:list")
 
 ### API GET ###
-# Get the api json and loop through the database and set the objects event_id to a list.
-# Pass both the json and array to the view.
-# If the api object id matches the id from the database the Add to list button will be changed to Attending.
+    # Get the api json and loop through the database and set the objects event_id to a list.
+    # Pass both the json and array to the view.
+    # If the api object id matches the id from the database the Add to list button will be changed to Attending.
 def get(request):
     events_list = services.get_events()
     eventids = []
