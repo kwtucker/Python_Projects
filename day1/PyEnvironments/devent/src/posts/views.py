@@ -48,8 +48,17 @@ def event_delete(request,id):
 
 def get(request):
     events_list = services.get_events()
+    eventids = []
+
+    # loops through database and appends all the event ids to a array
+    # and sends it to the view to check if the id equals the api id then
+    # changes the color and text, letting the user know they are attending.
+    for e in Event.objects.all():
+        eventids.append(e.event_id)
+
     context_data = {
         "instance": events_list,
+        "eventids": eventids,
     }
     return render(request,'events.html',context_data)
 
