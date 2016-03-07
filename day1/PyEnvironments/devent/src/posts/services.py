@@ -1,5 +1,7 @@
 import requests
 import simplejson as json
+
+# Calls the meetup api and sets a variable to the json value and returns it.
 def get_events():
     url = 'https://api.meetup.com/2/concierge'
     params = {'zip': 32801,

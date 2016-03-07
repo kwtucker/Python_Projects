@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 # Create your models here.
+
+# This sets the data types of the form and database
 class Event(models.Model):
     group_name = models.CharField(max_length=120, null=True, blank=True)
     event_name = models.CharField(max_length=120, null=True, blank=True)

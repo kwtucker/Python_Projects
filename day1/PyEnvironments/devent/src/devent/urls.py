@@ -18,10 +18,17 @@ from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # using the include to use the urls I use in the posts app
     url(r'^posts/', include('posts.urls', namespace='posts')),
 ]
 
+# If the DEBUG is set to true the errors will be displayed on the page
+# If it is set to False if will not display errors for deployment.
 if settings.DEBUG:
     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+

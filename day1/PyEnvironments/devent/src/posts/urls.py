@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from django.contrib import admin
+# importing the functions from the views so the url call them.
 from .views import (
                     event_list,
                     event_create,
