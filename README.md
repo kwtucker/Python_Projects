@@ -12,12 +12,24 @@ Install virtualenv
 Install pip
 
 cd Django_Meetup_app/PyEnvironments
-Install virtual dependencies with: `pip install -r requirements.txt`
+Install virtual dependencies with:
+```
+$ pip install -r requirements.txt
+```
 
 cd Django_Meetup_app/PyEnvironments/devent
-`source bin/activate`
+```
+$ source bin/activate
+```
 
 ###### To see if you are in the virtual environment run this command:
-`which python`
+```
+$ which python
+```
 This response path should end with this:
 PyEnvironments/devent/bin/python
+
+###### To Exit the Virtual Environment run in the project directory:
+```
+$ deactivate
+```
