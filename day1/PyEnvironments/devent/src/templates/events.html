@@ -4,13 +4,11 @@
     <section class="row">
     <ol class="col-sm-12">
     <h2>Event Feed</h2>
-
     {% for i in instance.results %}
-    {% load humanize %}
         <li class="item row">
             <div class="row">
                 <p class="hidden-xs col-md-3 col-md-offset-10 datetime"><small>{{ i.time }}</small></p>
-                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-xs-12 col-xs-offset-0 datetime"><small>{{ obj.event_date }}</small></p>
+                <p class="hidden-sm hidden-md hidden-lg hidden-xl col-xs-12 datetime"><small>{{ i.time }}</small></p>
             </div>
             <div class="row">
                 <p class="hidden-xs col-sm-3"><strong>Event</strong></p>
@@ -31,7 +29,11 @@
                         <input type="hidden" name="event_name" value="{{ i.name }}">
                         <input type="hidden" name="event_date" value="{{ i.time }}">
                         <input type="hidden" name="event_url" value="{{ i.event_url }}">
+                        {% if i.id in eventids %}
+                        <input id='green' class="col-xs-12"  type="submit" value="Attending" disabled></input>
+                        {% else %}
                         <input class="col-xs-12"  type="submit" value="Add to list"></input>
+                        {% endif %}
                     </form>
                     <a class="link col-xs-offset-1 col-xs-10 col-sm-12 col-md-5" href="{{ i.event_url }}" title="Meetup Link" target="_blank">Click to View</a>
                 </div>
