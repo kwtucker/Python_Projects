@@ -60,4 +60,4 @@ $ deactivate
 
 ### Video Reviewing Devent App
 
-[Devent_Meetup_App Review](https://youtu.be/E-1kUsR6qkI)
+[Devent_Meetup_App Review](https://youtu.be/9nbeMPE7rpk)
