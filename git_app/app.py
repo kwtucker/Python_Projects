@@ -2,7 +2,6 @@ from flask import Flask, flash, render_template, json, jsonify, request, redirec
 import subprocess
 from pync import Notifier
 from flask.ext.sqlalchemy import SQLAlchemy
-# from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug import generate_password_hash, check_password_hash
 from flask.ext.github import GitHub
 
@@ -35,16 +34,18 @@ def home():
 
 @app.route('/settings/')
 def settings():
-    return render_template('settings.html')
+    n = UserSettings.query.all()
+    print n
+    return render_template('settings.html', n=n)
 
 @app.route('/settingsSubmit',methods=['GET','POST'])
 def settingsSubmit():
     #print str(session['token']) + "Submit"
+    # print request.args.get("gitAC")
+    # print request.args.get("gitPu")
     print request.args.get("gitAC")
-    print request.args.get("gitPu")
     if not request.args.get("gitAC") is None:
         print 'commit'
-        # print  request.args.get("gitAC")
         gAC = UserSettings.query.filter_by(user_id=session['userid'], setting_id=request.args.get("gitAC")).count()
         if(gAC == 0):
             u = UserSettings(int(session['userid']),request.args.get("gitAC"), 1 )
@@ -56,7 +57,6 @@ def settingsSubmit():
 
     if not request.args.get("gitPu") is None:
         print 'push'
-        print  request.args.get("gitPu")
         gPU = UserSettings.query.filter_by(user_id=session['userid'], setting_id=request.args.get("gitPu")).count()
         if(gPU == 0):
             u = UserSettings(int(session['userid']),request.args.get("gitPu"), 1 )
@@ -68,21 +68,29 @@ def settingsSubmit():
 
     # If the gitAC option is switched off the setting will be removed
     if request.args.get("gitAC") is None:
-        gACDelete = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).one()
-        db.session.delete(gACDelete)
-        db.session.commit()
+        gACD = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).count()
+        if(gACD > 0):
+            gACDelete = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).one()
+            db.session.delete(gACDelete)
+            db.session.commit()
+        else:
+            print "Do Nothing AC"
 
     # If the gitPu option is switched off the setting will be removed
     if request.args.get("gitPu") is None:
-        gPUDelete = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).one()
-        db.session.delete(gPUDelete)
-        db.session.commit()
+        gPUD = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).count()
+        if(gPUD > 0):
+            gPUDelete = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).one()
+            db.session.delete(gPUDelete)
+            db.session.commit()
+        else:
+            print "Do Nothing Pu"
 
 
 
 
-    # print int(request.form['gitAC'])
-    return render_template('settings.html')
+    # print request.form['gitAC']
+    return redirect(url_for("settings"))
 
 
 @app.route('/githubLogin/', methods=['GET','POST'])
