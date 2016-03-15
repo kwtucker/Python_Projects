@@ -2,7 +2,7 @@ from flask import Flask, flash, render_template, json, jsonify, request, redirec
 import subprocess
 from pync import Notifier
 from flask.ext.sqlalchemy import SQLAlchemy
-from werkzeug import generate_password_hash, check_password_hash
+# from werkzeug import generate_password_hash, check_password_hash
 from flask.ext.github import GitHub
 
 app = Flask(__name__)

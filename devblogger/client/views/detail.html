@@ -1,0 +1,12 @@
+<h1>{{cake.name}} Details</h1>
+
+<div id="detail">
+	<p><span>Cupcake Name:</span> {{cake.name}}</p>
+	<p><span>Frosting Flavor:</span> {{cake.frostingflavor}}</p>
+	<p><span>Cake Flavor:</span> {{cake.flavor}}</p>
+	<p><span>Color:</span> {{cake.color}}</p>
+</div>
+
+<a href="#/edit/{{cakeIdx}}">Edit Cake</a>
+<button ng-click="remove()">Remove Cake</button>
+<a href="#/list">Back to Cake List</a>
