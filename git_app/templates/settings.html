@@ -13,6 +13,25 @@
         Git Push
         <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
     </label>
+    {# {% for num in n %}
+        <label class="push-right">
+            {% if num == 1 and num == 2 %}
+                Git Add, Commit
+                <input type="checkbox" checked name="gitAC" value="1" data-toggle="toggle">
+                <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
+            {% endif %}
+            {% if num == 1 %}
+                Git Add, Commit
+                <input type="checkbox" checked name="gitAC" value="1" data-toggle="toggle">
+                <input type="checkbox"  name="gitPu" value="2" data-toggle="toggle">
+            {% endif %}
+            {% if num == 2 %}
+                Git Add, Commit
+                <input type="checkbox"  name="gitAC" value="1" data-toggle="toggle">
+                <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
+            {% endif %}
+        </label>
+    {% endfor %} #}
     </div>
     <input class="btn settingSub" type="submit" value="Save Changes"></input>
 </form>
