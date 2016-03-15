@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include "userNav.html" %}
+<div class="row">
+<h1>Settings</h1>
+<form class="col-md-12" action="/settingsSubmit" method="get">
+    <div class="form-group">
+    <label class="push-right">
+        Git Add, Commit
+        <input type="checkbox" checked name="gitAC" value="1" data-toggle="toggle">
+    </label>
+    <label class="push-right">
+        Git Push
+        <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
+    </label>
+    </div>
+    <input class="btn settingSub" type="submit" value="Save Changes"></input>
+</form>
+</div>
+{% endblock %}
