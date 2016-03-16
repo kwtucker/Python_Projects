@@ -1,4 +1,6 @@
 from flask import Flask, flash, render_template, json, jsonify, request, redirect, url_for, session,g
+from flask_restful import Resource, Api
+from requests import put, get
 import subprocess
 from pync import Notifier
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -6,6 +8,34 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.github import GitHub
 
 app = Flask(__name__)
+api = Api(app)
+
+# class SettingsApi(Resource):
+@app.route("/api/settings", methods=['GET'])
+def geta():
+    # print n1.value
+    # print n2.value
+    n1 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).first()
+    n2 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).first()
+    Arr= [("gitAddCommit",int(n1.value)),("gitPush",int(n2.value))]
+    # Arr= [("gitAddCommit",str(n1.value))]
+    Dictionary=dict(Arr)
+    print Dictionary
+    return jsonify(Dictionary)
+
+    # for k in keys:
+    #     print k,Dictionary[k]
+
+
+    # return Dictionary
+
+
+
+
+
+# api.add_resource(SettingsApi, '/api/settings')
+
+
 
 
 app.config['GITHUB_CLIENT_ID'] = 'd2e6f04d44ae06dd5b75'
@@ -34,25 +64,31 @@ def home():
 
 @app.route('/settings/')
 def settings():
-    n = UserSettings.query.all()
-    print n
-    return render_template('settings.html', n=n)
 
-@app.route('/settingsSubmit',methods=['GET','POST'])
+    # n1 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).first()
+    # n2 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).first()
+    # a = SettingsApi()
+    # a.get(n1, n2)
+    return render_template('settings.html')
+
+@app.route('/settingsSubmit',methods=['GET', 'POST'])
 def settingsSubmit():
     #print str(session['token']) + "Submit"
     # print request.args.get("gitAC")
     # print request.args.get("gitPu")
-    print request.args.get("gitAC")
+    # print request.args.get("gitAC")
     if not request.args.get("gitAC") is None:
         print 'commit'
         gAC = UserSettings.query.filter_by(user_id=session['userid'], setting_id=request.args.get("gitAC")).count()
         if(gAC == 0):
-            u = UserSettings(int(session['userid']),request.args.get("gitAC"), 1 )
+            u = UserSettings(int(session['userid']),request.args.get("gitAC"), 1)
             db.session.add(u)
             db.session.commit()
         else:
             print "Hello1"
+            ac = UserSettings.query.filter_by(user_id=session['userid'], setting_id=request.args.get("gitAC")).first()
+            ac.value = 1
+            db.session.commit()
 
 
     if not request.args.get("gitPu") is None:
@@ -64,6 +100,9 @@ def settingsSubmit():
             db.session.commit()
         else:
             print "Hello2"
+            pu = UserSettings.query.filter_by(user_id=session['userid'], setting_id=request.args.get("gitPu")).first()
+            pu.value = 1
+            db.session.commit()
 
 
     # If the gitAC option is switched off the setting will be removed
@@ -71,7 +110,8 @@ def settingsSubmit():
         gACD = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).count()
         if(gACD > 0):
             gACDelete = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).one()
-            db.session.delete(gACDelete)
+            gACDelete.value = 0
+            # db.session.delete(gACDelete)
             db.session.commit()
         else:
             print "Do Nothing AC"
@@ -81,7 +121,8 @@ def settingsSubmit():
         gPUD = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).count()
         if(gPUD > 0):
             gPUDelete = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).one()
-            db.session.delete(gPUDelete)
+            gPUDelete.value = 0
+            # db.session.delete(gPUDelete)
             db.session.commit()
         else:
             print "Do Nothing Pu"
@@ -108,20 +149,33 @@ def login():
 @github.authorized_handler
 def authorized(oauth_token):
     if oauth_token is None:
-        flash("Authorization failed.")
-        print "Authorization failed"
-        return redirect('/')
+        if session:
+            return render_template('userDash.html')
+        else:
+            return redirect('/')
+
     user = Users.query.filter_by(github_access_token=oauth_token).first()
 
     if user is None:
         user = Users(oauth_token)
+
         db.session.add(user)
+        db.session.commit()
+
 
     user.github_access_token = oauth_token
-    db.session.commit()
+
 
     session['userid'] = user.id
     session['token']  = user.github_access_token
+
+    userinitSettings = UserSettings.query.filter_by(user_id=session['userid']).all()
+    if not userinitSettings:
+        initAC = UserSettings(int(session['userid']),1, 0)
+        initPU = UserSettings(int(session['userid']),2, 0)
+        db.session.add(initAC)
+        db.session.add(initPU)
+        db.session.commit()
 
     return render_template('userDash.html')
 
@@ -139,7 +193,7 @@ def token_getter():
 
 @app.route('/logout')
 def logout():
-    session.delete()
+    session.clear()
     return redirect(url_for('homepage'))
 
 
