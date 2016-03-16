@@ -1,0 +1,16 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+a:hover, a {
+  text-decoration: none;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+form {
+    margin: 20px 0;
+}
