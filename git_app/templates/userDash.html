@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
-{% block nav %}
-        <li role="presentation" class="active"><a href="/dash/">Dash</a>
-        <li role="presentation"><a href="/settings/">Settings</a></li>
-        <li role="presentation"><a href="/logout">Logout</a></li>
+{% block content %}
+<div class="header">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/dash/">Dash</a>
+            <li role="presentation"><a href="/settings/">Settings</a></li>
+            <li role="presentation"><a href="/logout">Logout</a></li>
+        </ul>
+        <h3 class="text-muted"><a href="/">Python Flask App</a></h3>
+    </nav>
+</div>
+<h1>User Dash</h1>
 {% endblock %}
-<h3 class="text-muted"><a href="/dash/">User Dash</a></h3>
+
+
+
+
+
 

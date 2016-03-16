@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-{% include "userNav.html" %}
-<div class="row">
+<div class="header">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/dash/">Dash</a>
+            <li role="presentation"><a href="/settings/">Settings</a></li>
+            <li role="presentation"><a href="/logout">Logout</a></li>
+        </ul>
+        <h3 class="text-muted"><a href="/">Python Flask App</a></h3>
+    </nav>
+</div>
 <h1>Settings</h1>
-<form class="col-md-12" action="/settingsSubmit" method="get">
+
+<form class="col-md-12" action="/settingsSubmit" method="GET">
     <div class="form-group">
     <label class="push-right">
         Git Add, Commit
@@ -13,7 +22,7 @@
         Git Push
         <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
     </label>
-    {# {% for num in n %}
+   <!--  {# {% for num in n %}
         <label class="push-right">
             {% if num == 1 and num == 2 %}
                 Git Add, Commit
@@ -31,9 +40,10 @@
                 <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
             {% endif %}
         </label>
-    {% endfor %} #}
+    {% endfor %} #} -->
     </div>
     <input class="btn settingSub" type="submit" value="Save Changes"></input>
 </form>
-</div>
+
 {% endblock %}
+
