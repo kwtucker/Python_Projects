@@ -43,6 +43,6 @@ class UserSettings(db.Model):
         self.value            = value
 
     def __repr__(self):
-        return '{}'.format(self.setting_id)
+        return '{}'.format(self.user_id,self.setting_id,self.value)
 
 
