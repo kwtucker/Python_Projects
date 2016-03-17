@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-def git():
-    print "Git Add Commit"
+def gitpush():
+    print "Git Push"
 
 
 
@@ -8,4 +8,4 @@ def git():
     # git a -a
 
 if __name__ == '__main__':
-    git()
+    gitpush()
