@@ -11,34 +11,16 @@ import os, sys
 app = Flask(__name__)
 api = Api(app)
 
-# class SettingsApi(Resource):
-@app.route("/api/settings", methods=['GET', 'POST'])
-def geta():
-    # print n1.value
-    # print n2.value
-    n1 = UserSettings.query.filter_by(user_id=4, setting_id=1).first()
-    n2 = UserSettings.query.filter_by(user_id=4, setting_id=2).first()
 
-    #n1 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).first()
-    #n2 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).first()
+
+@app.route("/api/settings/<int:user_id>", methods=['GET', 'POST'])
+def geta(user_id):
+    n1 = UserSettings.query.filter_by(user_id='%d' % user_id, setting_id=1).first()
+    n2 = UserSettings.query.filter_by(user_id='%d' % user_id, setting_id=2).first()
     Arr= [("gitAddCommit",int(n1.value)),("gitPush",int(n2.value))]
-    # Arr= [("gitAddCommit",str(n1.value))]
     Dictionary=dict(Arr)
     print Dictionary
     return jsonify(Dictionary)
-
-    # for k in keys:
-    #     print k,Dictionary[k]
-
-
-    # return Dictionary
-
-
-
-
-
-# api.add_resource(SettingsApi, '/api/settings')
-
 
 
 
@@ -47,7 +29,6 @@ app.config['GITHUB_CLIENT_SECRET'] = '3a4ccb84b1e4dd4c7c15f01477a496cac904c4ce'
 github = GitHub(app)
 redirect_uri="http://localhost:5000/dash/"
 state = "4F)vQzyf+YZctK2UnD"
-
 
 
 
