@@ -16,11 +16,19 @@
     <div class="form-group">
     <label class="push-right">
         Git Add, Commit
+        {% if n1 == 1 %}
         <input type="checkbox" checked name="gitAC" value="1" data-toggle="toggle">
+        {% else %}
+        <input type="checkbox" name="gitAC" value="1" data-toggle="toggle">
+        {% endif %}
     </label>
     <label class="push-right">
         Git Push
+        {% if n2 == 1 %}
         <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
+        {% else %}
+        <input type="checkbox" name="gitPu" value="2" data-toggle="toggle">
+        {% endif %}
     </label>
    <!--  {# {% for num in n %}
         <label class="push-right">

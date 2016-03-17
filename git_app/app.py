@@ -6,17 +6,21 @@ from pync import Notifier
 from flask.ext.sqlalchemy import SQLAlchemy
 # from werkzeug import generate_password_hash, check_password_hash
 from flask.ext.github import GitHub
+import os, sys
 
 app = Flask(__name__)
 api = Api(app)
 
 # class SettingsApi(Resource):
-@app.route("/api/settings", methods=['GET'])
+@app.route("/api/settings", methods=['GET', 'POST'])
 def geta():
     # print n1.value
     # print n2.value
-    n1 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).first()
-    n2 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).first()
+    n1 = UserSettings.query.filter_by(user_id=4, setting_id=1).first()
+    n2 = UserSettings.query.filter_by(user_id=4, setting_id=2).first()
+
+    #n1 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).first()
+    #n2 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).first()
     Arr= [("gitAddCommit",int(n1.value)),("gitPush",int(n2.value))]
     # Arr= [("gitAddCommit",str(n1.value))]
     Dictionary=dict(Arr)
@@ -61,15 +65,18 @@ def homepage():
 @app.route('/app/1/')
 def home():
     return Notifier.notify('Hello Kevin',sound='Ping', execute="open /Applications/iTerm.app")
+    # r = requests.get('http://localhost:5000/api/settings')
+    # print r.json()
+    #- See more at: http://www.mervine.net/executing-bash-from-python#sthash.Nvo41fGn.dpuf
 
 @app.route('/settings/')
 def settings():
 
-    # n1 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).first()
-    # n2 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).first()
+    n1 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=1).first()
+    n2 = UserSettings.query.filter_by(user_id=session['userid'], setting_id=2).first()
     # a = SettingsApi()
     # a.get(n1, n2)
-    return render_template('settings.html')
+    return render_template('settings.html', n1=n1.value, n2=n2.value)
 
 @app.route('/settingsSubmit',methods=['GET', 'POST'])
 def settingsSubmit():
@@ -177,11 +184,12 @@ def authorized(oauth_token):
         db.session.add(initPU)
         db.session.commit()
 
-    return render_template('userDash.html')
+    return render_template('userDash.html', uid=session['userid'])
 
 # @app.route('/user')
 # def user():
 #     return jsonify(github.get('user'))
+
 
 @github.access_token_getter
 def token_getter():

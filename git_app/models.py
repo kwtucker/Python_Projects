@@ -34,7 +34,7 @@ class UserSettings(db.Model):
     id                    = db.Column(db.Integer, primary_key=True)
     user_id               = db.Column(db.Integer,db.ForeignKey('Users.id'), primary_key=True)
     setting_id            = db.Column(db.Integer,db.ForeignKey('Settings.id'), primary_key=True)
-    value                 = db.Column(db.String(120))
+    value                 = db.Column(db.Integer, primary_key=True)
 
 
     def __init__(self, user_id, setting_id, value):
