@@ -13,14 +13,24 @@ api = Api(app)
 
 
 
-@app.route("/api/settings/<int:user_id>", methods=['GET', 'POST'])
-def geta(user_id):
-    n1 = UserSettings.query.filter_by(user_id='%d' % user_id, setting_id=1).first()
-    n2 = UserSettings.query.filter_by(user_id='%d' % user_id, setting_id=2).first()
-    Arr= [("gitAddCommit",int(n1.value)),("gitPush",int(n2.value))]
-    Dictionary=dict(Arr)
-    print Dictionary
-    return jsonify(Dictionary)
+@app.route("/api/settings/<int:user_id>/<user_oauth>", methods=['GET', 'POST'])
+def geta(user_id,user_oauth):
+    userO = Users.query.filter_by(github_access_token='%s' % user_oauth).first()
+
+    if userO is None:
+        error= [("Error", 404),("Description", "Bad Request, Sorry")]
+        errorDict=dict(error)
+        print errorDict
+        return jsonify(errorDict)
+    if userO:
+        if int(userO.id) == int(user_id):
+            n1 = UserSettings.query.filter_by(user_id='%d' % user_id, setting_id=1).first()
+            n2 = UserSettings.query.filter_by(user_id='%d' % user_id, setting_id=2).first()
+            Arr= [("gitAddCommit",int(n1.value)),("gitPush",int(n2.value))]
+            Dictionary=dict(Arr)
+            print Dictionary
+
+            return jsonify(Dictionary)
 
 
 
@@ -61,10 +71,6 @@ def settings():
 
 @app.route('/settingsSubmit',methods=['GET', 'POST'])
 def settingsSubmit():
-    #print str(session['token']) + "Submit"
-    # print request.args.get("gitAC")
-    # print request.args.get("gitPu")
-    # print request.args.get("gitAC")
     if not request.args.get("gitAC") is None:
         print 'commit'
         gAC = UserSettings.query.filter_by(user_id=session['userid'], setting_id=request.args.get("gitAC")).count()
@@ -165,7 +171,7 @@ def authorized(oauth_token):
         db.session.add(initPU)
         db.session.commit()
 
-    return render_template('userDash.html', uid=session['userid'])
+    return render_template('userDash.html', uid=session['userid'], uao=session['token'], sess=session)
 
 # @app.route('/user')
 # def user():
