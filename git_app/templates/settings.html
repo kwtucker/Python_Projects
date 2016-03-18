@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row">
+    <div class="col-xs-6 col-sm-3 userlogImgName pull-right">
+        <p class="col-xs-6 hidden-xs">{{ session.usr }}</p>
+        <img class="col-xs-5 col-sm-5 pull-right" src='{{ session.userImgLink }}' alt="{{ session.usr }} image">
+    </div>
+</div>
 <div class="header">
     <nav>
         <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="/dash/">Dash</a>
-            <li role="presentation"><a href="/settings/">Settings</a></li>
+            <li role="presentation"><a href="/dash/">Dash</a>
+            <li role="presentation" class="active"><a href="/settings/">Settings</a></li>
             <li role="presentation"><a href="/logout">Logout</a></li>
         </ul>
-        <h3 class="text-muted"><a href="/">Git App</a></h3>
+        <h3 class="text-muted"><a href="/dash/">Git Automated</a></h3>
     </nav>
 </div>
 <h1>Settings</h1>
@@ -30,25 +36,6 @@
         <input type="checkbox" name="gitPu" value="2" data-toggle="toggle">
         {% endif %}
     </label>
-   <!--  {# {% for num in n %}
-        <label class="push-right">
-            {% if num == 1 and num == 2 %}
-                Git Add, Commit
-                <input type="checkbox" checked name="gitAC" value="1" data-toggle="toggle">
-                <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
-            {% endif %}
-            {% if num == 1 %}
-                Git Add, Commit
-                <input type="checkbox" checked name="gitAC" value="1" data-toggle="toggle">
-                <input type="checkbox"  name="gitPu" value="2" data-toggle="toggle">
-            {% endif %}
-            {% if num == 2 %}
-                Git Add, Commit
-                <input type="checkbox"  name="gitAC" value="1" data-toggle="toggle">
-                <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
-            {% endif %}
-        </label>
-    {% endfor %} #} -->
     </div>
     <input class="btn settingSub" type="submit" value="Save Changes"></input>
 </form>

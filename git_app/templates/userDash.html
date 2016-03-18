@@ -1,19 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="row">
+    <div class="col-xs-6 col-sm-3 userlogImgName pull-right">
+        <p class="col-xs-6 hidden-xs">{{ session.usr }}</p>
+        <img class="col-xs-5 col-sm-5 pull-right" src='{{ session.userImgLink }}' alt="{{ session.usr }} image">
+    </div>
+</div>
 <div class="header">
     <nav>
-        <ul class="nav nav-pills pull-right">
+        <ul class="nav nav-pills pull-right ">
             <li role="presentation" class="active"><a href="/dash/">Dash</a>
             <li role="presentation"><a href="/settings/">Settings</a></li>
             <li role="presentation"><a href="/logout">Logout</a></li>
         </ul>
-        <h3 class="text-muted"><a href="/">Git App</a></h3>
+        <h3 class="text-muted"><a href="/dash/">Git Automated</a></h3>
     </nav>
 </div>
-<a href="../static/curl.sh.zip" title="" download="curl">Download Now</a>
-<code>$ python gitStarted.py {{ uid }} {{ uao }}</code>
-<h1>User Dash</h1>
-{{ session }}
+<div class="row">
+    <div class="col-xs-12">
+        <a class="col-xs-12 col-sm-3" id="download" href="../static/download.zip" title="" download="gitAutomated"><p>Download Now</p></a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Start Automation</h3>
+        <h5>You unique start command</h5>
+        <code><strong>$</strong> nohup python gitStarted.py {{ session.userid }} {{ session.token }} &</code>
+        <ul class="commandLegend">
+            <li>Shell = <strong>$</strong></li>
+            <li>Allows you to close the terminal = <strong>nohup</strong></li>
+            <li>The automation = <strong>python gitStarted</strong></li>
+            <li>Your Id = <strong>{{ session.userid }}</strong></li>
+            <li>Token = <strong>{{ session.token }}</strong></li>
+            <li>Background Process Invoke = <strong>&</strong></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Stop Automation</h3>
+        <code><strong>$</strong> python gitStop.py</code>
+        <ul class="commandLegend">
+            <li>Shell = <strong>$</strong></li>
+            <li>Stop Background Process = <strong>python gitStarted</strong></li>
+        </ul>
+    </div>
+</div>
+
 {% endblock %}
 
 

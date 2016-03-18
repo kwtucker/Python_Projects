@@ -1,15 +1,13 @@
 #!/usr/bin/env python
-# def git():
-#     import os
-#     import signal
-#     os.system('ps aux | grep pycommand.py | ack ')
+def gitstop():
+    import subprocess, signal, os
+    p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
+    out, err = p.communicate()
 
-#     os.kill(pid, signal.SIGTERM)
+    for line in out.splitlines():
+        if 'gitStarted.py' in line:
+            pid = int(line.split(None, 1)[0])
+            os.kill(pid, signal.SIGKILL)
 
-
-
-
-#     # git a -a
-
-# if __name__ == '__main__':
-#     git()
+if __name__ == '__main__':
+    gitstop()
