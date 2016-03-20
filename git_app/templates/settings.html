@@ -18,9 +18,9 @@
 </div>
 <h1>Settings</h1>
 
-<form class="col-md-12" action="/settingsSubmit" method="GET">
+<form class="col-xs-12" action="/settingsSubmit" method="GET">
     <div class="form-group">
-    <label class="push-right">
+    <label class=" col-xs-12">
         Git Add, Commit
         {% if n1 == 1 %}
         <input type="checkbox" checked name="gitAC" value="1" data-toggle="toggle">
@@ -28,7 +28,7 @@
         <input type="checkbox" name="gitAC" value="1" data-toggle="toggle">
         {% endif %}
     </label>
-    <label class="push-right">
+    <label class="push-right col-xs-12">
         Git Push
         {% if n2 == 1 %}
         <input type="checkbox" checked name="gitPu" value="2" data-toggle="toggle">
