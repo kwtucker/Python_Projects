@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row">
-    <div class="col-xs-6 col-sm-3 userlogImgName pull-right">
-        <p class="col-xs-6 hidden-xs">{{ session.usr }}</p>
-        <img class="col-xs-5 col-sm-5 pull-right" src='{{ session.userImgLink }}' alt="{{ session.usr }} image">
+    <div class="col-xs-6 col-sm-4 userlogImgName pull-right">
+        <p class="col-sm-4 hidden-xs">{{ session.usr }}</p>
+        <img class="col-xs-5 col-sm-4 pull-right" src='{{ session.userImgLink }}' alt="{{ session.usr }} image">
     </div>
 </div>
 <div class="header">

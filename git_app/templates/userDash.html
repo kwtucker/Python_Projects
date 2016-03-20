@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="row">
-    <div class="col-xs-6 col-sm-3 userlogImgName pull-right">
-        <p class="col-xs-6 hidden-xs">{{ session.usr }}</p>
-        <img class="col-xs-5 col-sm-5 pull-right" src='{{ session.userImgLink }}' alt="{{ session.usr }} image">
+    <div class="col-xs-6 col-sm-4 userlogImgName pull-right">
+        <p class="col-sm-4 hidden-xs">{{ session.usr }}</p>
+        <img class="col-xs-5 col-sm-4 pull-right" src='{{ session.userImgLink }}' alt="{{ session.usr }} image">
     </div>
 </div>
 <div class="header">
@@ -20,10 +20,20 @@
     <div class="col-xs-12">
         <a class="col-xs-12 col-sm-3" id="download" href="../static/GitAutomated.zip" title="" download="GitAutomated"><p>Download Now</p></a>
     </div>
+    <div class="col-xs-12">
+        <p>Once you download. Make sure you turn on you preferred settings on the settings page.</p>
+    </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h3>Start Automation</h3>
+        <h3>What Happens when you run these commands:</h3>
+        <p>Well once you run the start command the process will run in the background. The scripts will look inside the GitAutomated directory and check if you place a repo project there. If you did, it will add and commit all changed and untracked files every 15 minutes ( only if you turned the setting on ). Then if you have commits staged for pushing, it will push to github or any other git version control every day between 12-1pm and 5-6pm. <strong>Refer to the Instructions at the bottom.</strong></p>
+        <p><strong>* Only run the commands in the scripts directory, or it will not work as intended.</strong></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Start Automation *</h3>
         <h5>Your unique start command</h5>
         <code><strong>$</strong> nohup python gitStarted.py {{ session.userid }} {{ session.token }} &</code>
         <ul class="commandLegend">
@@ -38,12 +48,40 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h3>Stop Automation</h3>
+        <h3>Stop Automation *</h3>
         <code><strong>$</strong> python gitStop.py</code>
         <ul class="commandLegend">
             <li>Shell = <strong>$</strong></li>
             <li>Stop Background Process = <strong>python gitStarted</strong></li>
         </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Automation Instructions</h3>
+        <div>
+            <h4>Start Automation</h4>
+            <ol>
+                <li>Click Download Button-(only once).</li>
+                <li>
+                    Unzip and place the directory where you would like. It contains another directory called scripts. You should not have to edit these file. If you do open one in your editor you will see comments explaining exactly what each line will do.
+                </li>
+                <li>
+                Place any directories that are git repositories just inside the GitAutomated directory, but not in the scripts directory.
+                </li>
+                <li>
+                    Now in your terminal, change directory to the scripts directory that is inside of the GitAutomated directory using cd command.
+                </li>
+                <li>Once inside the scripts dir. <strong>Paste</strong> the Start Automation command there.</li>
+            </ol>
+        </div>
+        <div>
+            <h4>Stop Automation</h4>
+            <ol>
+                <li>Change directories to the scripts directory and <strong>Paste</strong> the Stop Automation command there. You would generally do this once you are done of the day or want to stop automation.</li>
+                <li><strong>Note.</strong> If you done not stop this when you are done, it will keep running in the background even if you close your terminal and log out.</li>
+            </ol>
+        </div>
     </div>
 </div>
 
