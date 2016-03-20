@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config['GITHUB_CLIENT_ID'] = 'd2e6f04d44ae06dd5b75'
 app.config['GITHUB_CLIENT_SECRET'] = '3a4ccb84b1e4dd4c7c15f01477a496cac904c4ce'
 github = GitHub(app)
-redirect_uri="http://localhost:5000/dash/"
+redirect_uri="http://awallpost/dash/"
 state = "4F)vQzyf+YZctK2UnD"
 
 
