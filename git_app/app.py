@@ -16,7 +16,9 @@ redirect_uri="http://localhost:5000/dash/"
 state = "4F)vQzyf+YZctK2UnD"
 
 
-engine = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/git_app'
+#engine = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/git_app'
+engine = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://kwtucker:relation_cloak_koch@git.cvsrzc8hq30b.us-east-1.rds.amazonaws.com:3306/git_app'
+
 db = SQLAlchemy(app)
 from models import *
 
