@@ -1,15 +1,13 @@
-from flask import Flask, flash, render_template, json, jsonify, request, redirect, url_for, session,g
-import os, sys,urllib2,subprocess
-from flask_restful import Resource, Api
+from flask import Flask, render_template, json, jsonify, request, redirect, url_for, session
+import urllib2,subprocess
 from requests import put, get
 from pync import Notifier
 from flask.ext.sqlalchemy import SQLAlchemy
-# from werkzeug import generate_password_hash, check_password_hash
 from flask.ext.github import GitHub
 
 
 app = Flask(__name__)
-api = Api(app)
+
 
 app.config['GITHUB_CLIENT_ID'] = 'd2e6f04d44ae06dd5b75'
 app.config['GITHUB_CLIENT_SECRET'] = '3a4ccb84b1e4dd4c7c15f01477a496cac904c4ce'
@@ -19,7 +17,6 @@ state = "4F)vQzyf+YZctK2UnD"
 
 
 engine = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/git_app'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 from models import *
 
@@ -31,7 +28,6 @@ def geta(user_id,user_oauth):
     if userO is None:
         error= [("gitAddCommit",int(404)),("gitPush",int(404))]
         errorDict=dict(error)
-        print errorDict
         return jsonify(errorDict)
     if userO:
         if int(userO.id) == int(user_id):
@@ -39,10 +35,7 @@ def geta(user_id,user_oauth):
             n2 = UserSettings.query.filter_by(user_id='%d' % user_id, setting_id=2).first()
             Arr= [("gitAddCommit",int(n1.value)),("gitPush",int(n2.value))]
             Dictionary=dict(Arr)
-            print Dictionary
-
             return jsonify(Dictionary)
-
 
 
 @app.route('/')
@@ -50,9 +43,20 @@ def homepage():
     return render_template('login.html')
 
 
-@app.route('/app/1/')
-def home():
-    Notifier.notify('Hello Kevin',sound='Ping', execute="open /Applications/iTerm.app")
+@app.route('/beer')
+def beer():
+    Notifier.notify('IPA Only', title="Beer Me",sound='Ping')
+    return redirect('/')
+
+
+@app.route('/KevinTucker')
+def KevinTucker():
+    Notifier.notify('Click for my GitHub', title="Kevin Tucker",sound='Ping', open='https://github.com/kwtucker')
+    return redirect('/')
+
+@app.route('/kevintucker')
+def kevintucker2():
+    Notifier.notify('Click for my GitHub', title="Kevin Tucker",sound='Ping', open='https://github.com/kwtucker')
     return redirect('/')
 
 @app.route('/settings/')
@@ -171,16 +175,6 @@ def authorized(oauth_token):
 
     return render_template('userDash.html', sess=session )
 
-# @app.route('/user')
-# def user():
-#     return jsonify(github.get('user'))
-
-
-# @github.access_token_getter
-# def token_getter():
-#     user = g.user
-#     if user is not None:
-#         return user.github_access_token
 
 
 @app.route('/logout')
@@ -192,5 +186,5 @@ def logout():
 
 if __name__ == "__main__":
     app.secret_key = "nT>pB2z^gR8JQvisvX"
-    app.run(debug=True)
+    app.run()
 
