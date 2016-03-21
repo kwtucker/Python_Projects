@@ -12,12 +12,12 @@ app = Flask(__name__)
 app.config['GITHUB_CLIENT_ID'] = 'd2e6f04d44ae06dd5b75'
 app.config['GITHUB_CLIENT_SECRET'] = '3a4ccb84b1e4dd4c7c15f01477a496cac904c4ce'
 github = GitHub(app)
-redirect_uri="http://awallpost/dash/"
+redirect_uri="http://localhost:5000/dash/"
+
 state = "4F)vQzyf+YZctK2UnD"
 
 
-#engine = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/git_app'
-engine = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://kwtucker:relation_cloak_koch@git.cvsrzc8hq30b.us-east-1.rds.amazonaws.com:3306/git_app'
+engine = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/git_app'
 
 db = SQLAlchemy(app)
 from models import *
